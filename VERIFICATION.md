@@ -19,7 +19,7 @@ Anthropic V3 source file.
 | Verify `job_exposure.csv` rows | ✅ for all requested checks | The three requested occupations and ten additional rows match the official rendered CSV exactly. The environment blocked saving the full raw CSV URL, so the checked 133-row subset remains in `data/labor_market_impacts_2026/`. |
 | Compare the paper with generated results | ✅ | Headline, robustness, temporal, automation, and 2026 exposure claims agree with the result tables. The task-splitting sentence correctly distinguishes the four unchanged frontline indices from the small Computer/Math change. |
 | Rebuild and inspect the paper PDF | ✅ | `writeup/paper.pdf` rebuilt as a 12-page PDF; every page was rendered and visually inspected. Placeholder author text and unsupported convergence claims were removed. |
-| Publish to GitHub | ❌ blocked by repository permission | `raamnandhakumar-eng/polecoai` exists and is publicly readable, but creating the publication branch returned GitHub API `403 Resource not accessible by integration`. The GitHub app needs write access to this repository. |
+| Publish to GitHub | ✅ | Published 33 verified files to `raamnandhakumar-eng/polecoai` on `codex/frontline-exposure-gap`; draft pull request [#1](https://github.com/raamnandhakumar-eng/polecoai/pull/1) opened for review and merge. |
 
 ## Requested headline checks
 
