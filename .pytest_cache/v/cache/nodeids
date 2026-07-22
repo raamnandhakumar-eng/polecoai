@@ -1,4 +1,0 @@
-[
-  "tests/test_reported_results.py::test_reported_results",
-  "tests/test_smoke.py::test_smoke_pipeline"
-]
