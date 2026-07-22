@@ -1,93 +1,166 @@
 # The Frontline Exposure Gap
 
-**Frontline occupations — retail sales, admin support, food service, personal
-care — hold 31.7% of US employment but only 11.1% of real-world AI usage.
-The gap is larger than official occupation codes suggest, it did not close
-between February and August 2025, and when AI does reach frontline tasks, it
-is used to automate rather than augment.**
+Code and data documentation for **“The Frontline Exposure Gap: Evidence on AI
+Adoption in Retail and Service Occupations from Task-Level Usage Data.”**
 
-Empirical analysis of the [Anthropic Economic Index](https://www.anthropic.com/news/the-anthropic-economic-index)
-(AEI): millions of Claude conversations mapped to O*NET tasks, joined here to
-BLS employment and O*NET wage data.
+**Author:** Sriramkrishnan Nandhakumar  
+**Contact:** raam.nandhakumar@gmail.com  
+**Paper:** [Markdown](paper/paper.md) · [PDF](paper/paper.pdf)
 
-![Usage vs employment by occupation group](figures/fig1_representation.png)
+![AI usage and employment share by occupation group](figures/fig1_representation.png)
 
-## Findings
+## Abstract
 
-**1. The gap.** AI usage concentrates in computer/mathematical occupations
-(37% of usage, 3.4% of employment — representation index 10.9). Frontline
-groups sit far below parity: admin support 0.64, sales 0.26, personal care
-0.23, food service 0.06 (`results/representation_by_group.csv`).
+This project measures realized AI use in frontline service occupations using
+the Anthropic Economic Index, O*NET task statements, and US occupational
+employment data. Sales, administrative support, food service, and personal
+care account for 31.74% of US employment but 11.13% of task-matched Claude
+usage. The analysis examines occupational classification, changes between the
+February and August 2025 releases, collaboration modes, wage patterns, and
+occupation-level observed exposure through February 2026.
 
-**2. The gap is understated by the taxonomy.** The strongest-looking
-frontline group (admin support) is roughly half technical work misfiled under
-SOC 43 — Bioinformatics Technicians, Computer Operators, Statistical
-Assistants. Excluding them cuts its index from 0.65 to **0.34**; other
-frontline groups barely move, a clean placebo
-(`results/robustness_misclassification.csv`).
+## Research question
 
-**3. The gap is not closing.** Comparing the Feb 2025 release to the Aug 2025
-(V3) release, frontline representation was roughly flat and food service
-*fell* (0.061 → 0.045). Adoption deepened where it was already deep
-(`results/temporal_feb_vs_aug_2025.csv`). Caveat: the releases use different
-classification pipelines; this comparison is indicative, and measuring the
-trend properly is an open problem discussed in the paper.
+How does observed AI use compare with employment across frontline occupations,
+and what distinguishes the frontline tasks and occupations in which AI use is
+already present?
 
-![Temporal comparison](figures/fig4_temporal.png)
+## Motivation
 
-**4. When AI reaches frontline work, it automates.** Frontline admin tasks
-show 62.7% automation-style usage (directive + feedback loop) — *higher than
-software tasks* (58.1%) and well above other occupations (43.0%)
-(`results/automation_share_by_bucket.csv`). The tasks that do penetrate
-frontline work are its embedded information tasks: customer correspondence,
-policy Q&A, scheduling — the back-office edges, not the customer-facing core.
+Studies of generative AI often estimate productivity effects after a tool has
+been introduced. This project instead examines where observed use appears in
+the occupational distribution. The distinction matters because gains within
+AI-using tasks can coexist with unequal adoption across occupations.
 
-![Automation vs augmentation](figures/fig5_automation_share.png)
+## Data and methodology
 
-**5. One year on (Feb 2026): the gap persists — and polarizes.** Using
-Anthropic's newest observed-exposure scores (AI Exposure Index, March 2026
-release), 39% of frontline occupations show *zero* observed exposure and food
-service averages 0.01 — yet Customer Service Representatives score **0.70**,
-among the highest in the entire economy, rivaling Computer Programmers (0.75).
-The fault line runs between information-mediated and physically co-present
-service work, not between "frontline" and "professional"
-(`results/exposure_2026_by_group.csv`, `figures/fig6_exposure_2026.png`).
+The analysis combines:
 
-## Reproduce
+- Anthropic Economic Index task-level usage data from February 2025;
+- the September 2025 release covering an August 2025 usage window;
+- O*NET task statements, occupation codes, and wages;
+- BLS Occupational Employment and Wage Statistics; and
+- Anthropic’s February 2026 occupation-level observed-exposure measure.
+
+For occupation group \(g\), the representation index is
+
+\[R_g = \frac{\text{usage share}_g}{\text{employment share}_g}.\]
+
+An index of 1 indicates usage proportional to employment. The study is
+descriptive and does not estimate a causal effect. Details are in
+[docs/methodology.md](docs/methodology.md).
+
+## Main findings
+
+1. The four frontline groups account for **11.13% of usage** and **31.74% of
+   employment**. Their representation indices are 0.645 for administrative
+   support, 0.258 for sales, 0.229 for personal care, and 0.061 for food
+   service. Computer and mathematical occupations have an index of 10.944.
+2. Excluding four technical occupations classified under administrative
+   support reduces that group’s index from **0.645 to 0.338**. The other
+   frontline indices change by no more than 0.01.
+3. Splitting shared O*NET tasks equally across listing occupations leaves all
+   four frontline indices unchanged to three decimal places. The
+   computer/mathematical index moves from 10.944 to 10.918.
+4. Between the February and August 2025 releases, administrative support,
+   sales, and personal care rise modestly, while food service falls from 0.061
+   to 0.045. Differences in release methodology limit temporal interpretation.
+5. Automation-style conversations account for 62.7% of classified frontline
+   administrative usage, compared with 58.1% in computer/mathematical
+   occupations and 43.0% across other occupations.
+6. In the February 2026 exposure data, 44 of 112 frontline occupations have
+   zero observed exposure. Customer Service Representatives score 0.7011,
+   compared with 0.0846 for Cashiers and 0.3222 for Retail Salespersons.
+
+The committed values are in [results/tables](results/tables) and are checked by
+[tests/test_reported_results.py](tests/test_reported_results.py).
+
+## Repository structure
+
+```text
+src/polecoai/    shared analysis, data, regression, and plotting functions
+scripts/         executable analysis and paper-build commands
+data/            data provenance, ignored raw/processed data, reference subset
+results/tables/  generated CSV tables reported in the paper
+figures/         generated figures
+paper/           current paper source, PDF, and notes
+docs/            methodology, data dictionary, and reproducibility record
+tests/           synthetic smoke test and reported-result assertions
+```
+
+## Installation
+
+Python 3.12 was used for the verified run.
 
 ```bash
-pip install -r requirements.txt
-python src/01_download_data.py   # fetches AEI data from Hugging Face (CC-BY 4.0)
-python src/02_analysis.py        # core indices, tasks, wages, and HC1 regressions
-python src/03_extensions.py      # robustness, temporal, automation vs augmentation
-python src/05_robustness.py      # shared-task assignment and optional OEWS weighting
-python src/04_latest_exposure.py # Feb 2026 exposure: persistence + polarization
-python src/07_verify_results.py  # assert every headline number
-python src/06_make_pdf.py        # rebuild writeup/paper.pdf
+git clone https://github.com/raamnandhakumar-eng/polecoai.git
+cd polecoai
+python -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
 ```
 
-Outputs: tables in `results/`, figures in `figures/`. A synthetic-data smoke
-test (`src/00_smoke_test.py`) verifies the pipeline in an isolated temporary
-folder without downloading or overwriting the official inputs. The completed
-manual and automated audit is recorded in [`VERIFICATION.md`](VERIFICATION.md).
+## Reproducing the results
 
-## Repository
+Run the complete pipeline:
 
-```
-src/         download + analysis pipeline (Python, pandas/matplotlib)
-results/     generated tables (committed for convenience)
-figures/     generated figures
-writeup/     working paper draft and findings summary
+```bash
+make reproduce
 ```
 
-## Data & citation
+Or run each stage directly:
 
-- Anthropic Economic Index (CC-BY 4.0): Handa et al., *Which Economic Tasks
-  are Performed with AI? Evidence from Millions of Claude Conversations*,
-  arXiv:2503.04761; AEI V3 release (Sept 2025).
-- Employment: US Bureau of Labor Statistics, OES May 2023.
-- Task taxonomy: O*NET / SOC, US Department of Labor.
+```bash
+python scripts/download_data.py
+python scripts/run_analysis.py
+python scripts/run_extensions.py
+python scripts/run_robustness.py
+python scripts/run_latest_exposure.py
+python tests/test_reported_results.py
+python scripts/build_paper.py
+```
 
-Code: MIT. Paper author: Sriramkrishnan Nandhakumar
-(raam.nandhakumar@gmail.com).
-Repository: https://github.com/raamnandhakumar-eng/polecoai
+The download script retrieves the source files from
+`Anthropic/EconomicIndex` on Hugging Face. Raw and intermediate data are not
+committed. Generated tables and figures are committed so the reported results
+can be inspected without rerunning the pipeline.
+
+For a download-free code check:
+
+```bash
+python tests/test_smoke.py
+```
+
+## Limitations
+
+- AEI records Claude usage rather than all AI use.
+- Task content is mapped to occupations; the user’s occupation is not observed.
+- Conversation share is not equivalent to work-time share or productivity.
+- The February and August 2025 releases use different classification pipelines
+  and task universes.
+- The February 2026 group means are unweighted across occupations unless a
+  detailed OEWS employment file is supplied.
+
+The paper discusses the direction and interpretation of each limitation.
+
+## Citation
+
+Citation metadata are available in [CITATION.cff](CITATION.cff). A plain-text
+citation is:
+
+> Nandhakumar, S. (2026). *The Frontline Exposure Gap: Evidence on AI
+> Adoption in Retail and Service Occupations from Task-Level Usage Data*.
+> https://github.com/raamnandhakumar-eng/polecoai
+
+## Acknowledgements
+
+This project uses public data from the Anthropic Economic Index, the US Bureau
+of Labor Statistics, and the US Department of Labor’s O*NET program. Their
+inclusion does not imply endorsement of this analysis.
+
+## License
+
+Code is released under the [MIT License](LICENSE). Source datasets retain their
+original licences; Anthropic Economic Index data are distributed under
+CC BY 4.0.

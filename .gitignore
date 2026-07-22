@@ -1,7 +1,6 @@
-# Raw AEI data — fetched by src/01_download_data.py, not committed
-data/release_2025_02_10/
-data/release_2025_09_15/
-data/v3_2025_08/
+# Downloaded and generated data are not committed.
+data/raw/*
+data/processed/*
 data/.cache/
 
 .venv/
@@ -9,5 +8,7 @@ data/.cache/
 tmp/
 __pycache__/
 *.pyc
+*.egg-info/
+.pytest_cache/
 .ipynb_checkpoints/
 .DS_Store

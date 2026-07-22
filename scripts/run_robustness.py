@@ -8,68 +8,60 @@ Step 5: Referee-driven robustness checks.
      and the representation index is recomputed.
 
   F. EMPLOYMENT WEIGHTING for the Feb 2026 exposure means: if a detailed
-     OEWS national file is present at data/oews/oews_national_2023.csv
+     OEWS national file is present at data/raw/oews/oews_national_2023.csv
      (columns OCC_CODE, TOT_EMP -- the standard BLS national XLSX saved as
      CSV), group means are recomputed employment-weighted. Otherwise the
      script prints unweighted means with a warning.
 
-Run: python src/05_robustness.py
+Run: python scripts/run_robustness.py
 """
 
-from pathlib import Path
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "data" / "release_2025_02_10"
-EXPOSURE = ROOT / "data" / "labor_market_impacts_2026" / "job_exposure_frontline_subset.csv"
-OEWS = ROOT / "data" / "oews" / "oews_national_2023.csv"
-OUT = ROOT / "results"
+from polecoai.config import (
+    ANALYSIS_GROUPS,
+    INITIAL_RELEASE_DIR,
+    RAW_DATA_DIR,
+    REFERENCE_DATA_DIR,
+    TABLES_DIR,
+)
+from polecoai.data import (
+    employment_shares,
+    load_initial_release,
+    normalize_task_text,
+)
 
-FRONTLINE = {"41": "Sales", "43": "Office/Admin", "35": "Food Service",
-             "39": "Personal Care"}
-GROUPS = dict(FRONTLINE, **{"15": "Computer & Mathematical"})
-
-
-def norm(s: pd.Series) -> pd.Series:
-    return (s.astype(str).str.lower().str.strip()
-            .str.replace(r"\s+", " ", regex=True).str.rstrip("."))
-
-
-def employment_shares() -> pd.Series:
-    soc = pd.read_csv(DATA / "SOC_Structure.csv")
-    mg = soc[soc["Major Group"].notna()].copy()
-    mg["code2"] = mg["Major Group"].astype(str).str[:2]
-    names = mg.set_index("SOC or O*NET-SOC 2019 Title")["code2"]
-    bls = pd.read_csv(DATA / "bls_employment_may_2023.csv")
-    bls["code2"] = bls["SOC or O*NET-SOC 2019 Title"].map(names)
-    emp = bls.dropna(subset=["code2"]).set_index("code2")["bls_distribution"]
-    return emp / emp.sum() * 100
+EXPOSURE_DATA = REFERENCE_DATA_DIR / "job_exposure_frontline_subset.csv"
+OEWS_DATA = RAW_DATA_DIR / "oews" / "oews_national_2023.csv"
 
 
 def task_split_robustness() -> pd.DataFrame:
-    m = pd.read_csv(DATA / "onet_task_mappings.csv")
-    s = pd.read_csv(DATA / "onet_task_statements.csv")
-    m["task_key"] = norm(m["task_name"])
-    s["task_key"] = norm(s["Task"])
-    occs = s[["task_key", "O*NET-SOC Code"]].drop_duplicates()
+    mappings = pd.read_csv(INITIAL_RELEASE_DIR / "onet_task_mappings.csv")
+    statements = pd.read_csv(INITIAL_RELEASE_DIR / "onet_task_statements.csv")
+    mappings["task_key"] = normalize_task_text(mappings["task_name"])
+    statements["task_key"] = normalize_task_text(statements["Task"])
+    occupations = statements[["task_key", "O*NET-SOC Code"]].drop_duplicates()
 
     # Baseline: first match only
-    base = m.merge(occs.drop_duplicates("task_key"), on="task_key", how="left")
+    base = mappings.merge(
+        occupations.drop_duplicates("task_key"), on="task_key", how="left"
+    )
     base_u = base.dropna(subset=["O*NET-SOC Code"]) \
         .groupby(base["O*NET-SOC Code"].str[:2])["pct"].sum()
     base_u = base_u / base_u.sum() * 100
 
     # Split: usage divided equally across all occupations sharing the task
-    split = m.merge(occs, on="task_key", how="left")
+    split = mappings.merge(occupations, on="task_key", how="left")
     n_occ = split.groupby("task_key")["O*NET-SOC Code"].transform("count")
     split["pct_split"] = split["pct"] / n_occ
     split_u = split.dropna(subset=["O*NET-SOC Code"]) \
         .groupby(split["O*NET-SOC Code"].str[:2])["pct_split"].sum()
     split_u = split_u / split_u.sum() * 100
 
-    emp = employment_shares()
+    inputs = load_initial_release()
+    emp = employment_shares(inputs["employment"], inputs["soc"])
     rows = []
-    for g, name in GROUPS.items():
+    for g, name in ANALYSIS_GROUPS.items():
         rows.append({
             "group": name,
             "usage_first_match": round(base_u.get(g, 0), 3),
@@ -79,17 +71,17 @@ def task_split_robustness() -> pd.DataFrame:
             "index_split": round(split_u.get(g, 0) / emp.get(g, 1), 3),
         })
     r = pd.DataFrame(rows)
-    r.to_csv(OUT / "robustness_task_split.csv", index=False)
+    r.to_csv(TABLES_DIR / "robustness_task_split.csv", index=False)
     return r
 
 
 def weighted_exposure_2026() -> pd.DataFrame | None:
-    df = pd.read_csv(EXPOSURE)
+    df = pd.read_csv(EXPOSURE_DATA)
     df["code2"] = df["occ_code"].str[:2]
-    df["group"] = df["code2"].map(GROUPS)
+    df["group"] = df["code2"].map(ANALYSIS_GROUPS)
 
-    if not OEWS.exists():
-        print("\n[F] OEWS detail file not found at data/oews/oews_national_2023.csv")
+    if not OEWS_DATA.exists():
+        print("\n[F] OEWS detail file not found at data/raw/oews/oews_national_2023.csv")
         print("    -> reporting UNWEIGHTED group means only. To run the")
         print("       employment-weighted version, download the May 2023")
         print("       national OEWS file from bls.gov/oes/tables.htm, save the")
@@ -97,7 +89,7 @@ def weighted_exposure_2026() -> pd.DataFrame | None:
         print("       and re-run this script.")
         return None
 
-    w = pd.read_csv(OEWS, dtype={"OCC_CODE": str})
+    w = pd.read_csv(OEWS_DATA, dtype={"OCC_CODE": str})
     w["TOT_EMP"] = pd.to_numeric(
         w["TOT_EMP"].astype(str).str.replace(",", ""), errors="coerce")
     g = df.merge(w[["OCC_CODE", "TOT_EMP"]], left_on="occ_code",
@@ -111,11 +103,12 @@ def weighted_exposure_2026() -> pd.DataFrame | None:
                "unweighted_mean": d["observed_exposure"].mean(),
                "employment": d["TOT_EMP"].sum()}), include_groups=False)
            .round(3))
-    out.to_csv(OUT / "exposure_2026_weighted.csv")
+    out.to_csv(TABLES_DIR / "exposure_2026_weighted.csv")
     return out
 
 
 def main() -> None:
+    TABLES_DIR.mkdir(parents=True, exist_ok=True)
     print("=== E. Task-splitting robustness (shared tasks split equally) ===")
     print(task_split_robustness().to_string(index=False))
     res = weighted_exposure_2026()

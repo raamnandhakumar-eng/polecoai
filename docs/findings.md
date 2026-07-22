@@ -35,7 +35,7 @@ chat data not capturing employer-side tools.
 
 ---
 
-# Extension results (src/03_extensions.py)
+# Extension results (`scripts/run_extensions.py`)
 
 ## A. Robustness: the gap is bigger than it looks
 Excluding technical occupations misfiled under SOC 43 (Bioinformatics

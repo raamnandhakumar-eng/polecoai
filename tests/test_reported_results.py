@@ -1,21 +1,19 @@
 """Assert the paper's headline values against the generated result tables.
 
-Run after scripts 02-05:
+Run after the analysis scripts:
 
-    python src/07_verify_results.py
+    python tests/test_reported_results.py
 """
 
-from pathlib import Path
 import hashlib
 import math
 
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[1]
-RESULTS = ROOT / "results"
-EXPOSURE = (ROOT / "data" / "labor_market_impacts_2026"
-            / "job_exposure_frontline_subset.csv")
-V3_RAW = (ROOT / "data" / "release_2025_09_15" / "data" / "intermediate"
+from polecoai.config import REFERENCE_DATA_DIR, TABLES_DIR, V3_RELEASE_DIR
+
+EXPOSURE = REFERENCE_DATA_DIR / "job_exposure_frontline_subset.csv"
+V3_RAW = (V3_RELEASE_DIR / "data" / "intermediate"
           / "aei_raw_claude_ai_2025-08-04_to_2025-08-11.csv")
 V3_SHA256 = "c8ef9c5eee0c42febc73e358ecc7d2358e0a0ce3b50122c0c15ae8ec569aceff"
 FRONTLINE_CODES = {"41", "43", "35", "39"}
@@ -43,7 +41,7 @@ def close(actual: float, expected: float, tolerance: float = 1e-9) -> None:
 
 
 def verify_representation() -> None:
-    frame = pd.read_csv(RESULTS / "representation_by_group.csv", dtype={0: str})
+    frame = pd.read_csv(TABLES_DIR / "representation_by_group.csv", dtype={0: str})
     code_col = frame.columns[0]
     frame[code_col] = frame[code_col].astype(str).str.zfill(2)
     frontline = frame[frame[code_col].isin(FRONTLINE_CODES)]
@@ -55,7 +53,7 @@ def verify_representation() -> None:
 
 
 def verify_extensions() -> None:
-    frame = pd.read_csv(RESULTS / "robustness_misclassification.csv")
+    frame = pd.read_csv(TABLES_DIR / "robustness_misclassification.csv")
     admin = frame.loc[frame["group"] == "Office/Admin"].iloc[0]
     close(admin["index_baseline"], 0.6445694655484034)
     close(admin["index_strict"], 0.3378358852874682)
@@ -63,7 +61,7 @@ def verify_extensions() -> None:
 
 
 def verify_wage_regressions() -> None:
-    frame = pd.read_csv(RESULTS / "regression_usage_wage.csv")
+    frame = pd.read_csv(TABLES_DIR / "regression_usage_wage.csv")
     indexed = frame.set_index(["model", "term"])
     checks = {
         ("log_wage_only", "log_wage"): (0.38378931, 0.18484632),
@@ -80,7 +78,7 @@ def verify_wage_regressions() -> None:
 
 
 def verify_task_split() -> None:
-    frame = pd.read_csv(RESULTS / "robustness_task_split.csv")
+    frame = pd.read_csv(TABLES_DIR / "robustness_task_split.csv")
     frontline = frame[frame["group"].isin(
         ["Sales", "Office/Admin", "Food Service", "Personal Care"])]
     if not (frontline["index_first_match"] == frontline["index_split"]).all():
@@ -110,7 +108,7 @@ def verify_official_v3() -> None:
     print(f"PASS official V3 SHA-256: {digest}")
 
 
-def main() -> None:
+def test_reported_results() -> None:
     verify_representation()
     verify_extensions()
     verify_wage_regressions()
@@ -118,6 +116,10 @@ def main() -> None:
     verify_latest_exposure()
     verify_official_v3()
     print("\nALL REQUESTED NUMERIC CHECKS PASSED")
+
+
+def main() -> None:
+    test_reported_results()
 
 
 if __name__ == "__main__":

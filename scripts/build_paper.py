@@ -1,5 +1,7 @@
-"""Convert writeup/paper.md into a working-paper style PDF with embedded,
-numbered figures. Run: python src/06_make_pdf.py"""
+"""Convert paper/paper.md into a PDF with embedded, numbered figures.
+
+Run: python scripts/build_paper.py
+"""
 
 import re
 from pathlib import Path
@@ -12,10 +14,10 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (SimpleDocTemplate, Paragraph, Spacer,
                                 Image as RLImage, HRFlowable)
 
-ROOT = Path(__file__).resolve().parents[1]
-MD = ROOT / "writeup" / "paper.md"
-FIGS = ROOT / "figures"
-OUT = ROOT / "writeup" / "paper.pdf"
+from polecoai.config import FIGURES_DIR, PAPER_DIR
+
+MARKDOWN_PATH = PAPER_DIR / "paper.md"
+PDF_PATH = PAPER_DIR / "paper.pdf"
 FONT_DIR = Path("/usr/share/fonts/truetype/dejavu")
 
 pdfmetrics.registerFont(TTFont("PaperSerif", FONT_DIR / "DejaVuSerif.ttf"))
@@ -80,7 +82,7 @@ def build() -> None:
                          leftIndent=14, firstLineIndent=-14, spaceAfter=4,
                          alignment=TA_LEFT)
 
-    lines = MD.read_text().splitlines()
+    lines = MARKDOWN_PATH.read_text().splitlines()
     story, placed = [], set()
     in_refs = False
 
@@ -111,9 +113,9 @@ def build() -> None:
 
         # place figures right after the paragraph that first mentions them
         for tag, (fname, caption) in FIGURES.items():
-            if tag in line and tag not in placed and (FIGS / fname).exists():
+            if tag in line and tag not in placed and (FIGURES_DIR / fname).exists():
                 placed.add(tag)
-                img = RLImage(str(FIGS / fname))
+                img = RLImage(str(FIGURES_DIR / fname))
                 scale = min(6.0 * inch / img.imageWidth, 3.6 * inch / img.imageHeight)
                 img.drawWidth, img.drawHeight = (img.imageWidth * scale,
                                                  img.imageHeight * scale)
@@ -121,7 +123,7 @@ def build() -> None:
                 story.append(img)
                 story.append(Paragraph(caption, cap))
 
-    doc = SimpleDocTemplate(str(OUT), pagesize=letter,
+    doc = SimpleDocTemplate(str(PDF_PATH), pagesize=letter,
                             leftMargin=1 * inch, rightMargin=1 * inch,
                             topMargin=0.9 * inch, bottomMargin=0.9 * inch,
                             title="The Frontline Exposure Gap",
@@ -134,7 +136,7 @@ def build() -> None:
         canvas.restoreState()
 
     doc.build(story, onFirstPage=add_page_number, onLaterPages=add_page_number)
-    print(f"PDF written: {OUT}")
+    print(f"PDF written: {PDF_PATH}")
 
 
 if __name__ == "__main__":
