@@ -1,0 +1,134 @@
+occ_code,title,observed_exposure
+15-1211,Computer Systems Analysts,0.2763
+15-1212,Information Security Analysts,0.4859
+15-1221,Computer and Information Research Scientists,0.3404
+15-1231,Computer Network Support Specialists,0.2867
+15-1232,Computer User Support Specialists,0.4685
+15-1241,Computer Network Architects,0.1987
+15-1242,Database Administrators,0.3315
+15-1243,Database Architects,0.5787
+15-1244,Network and Computer Systems Administrators,0.3373
+15-1251,Computer Programmers,0.7451
+15-1252,Software Developers,0.288
+15-1253,Software Quality Assurance Analysts and Testers,0.5195
+15-1254,Web Developers,0.4802
+15-1255,Web and Digital Interface Designers,0.249
+15-1299,"Computer Occupations, All Other",0.3106
+15-2011,Actuaries,0.0539
+15-2021,Mathematicians,0.4241
+15-2031,Operations Research Analysts,0.4288
+15-2041,Statisticians,0.2107
+15-2051,Data Scientists,0.4605
+15-2099,"Mathematical Science Occupations, All Other",0.4793
+35-1011,Chefs and Head Cooks,0.0
+35-1012,First-Line Supervisors of Food Preparation and Serving Workers,0.0564
+35-2011,"Cooks, Fast Food",0.0
+35-2012,"Cooks, Institution and Cafeteria",0.0
+35-2013,"Cooks, Private Household",0.0
+35-2014,"Cooks, Restaurant",0.0116
+35-2015,"Cooks, Short Order",0.0
+35-2021,Food Preparation Workers,0.0
+35-3011,Bartenders,0.0
+35-3023,Fast Food and Counter Workers,0.0
+35-3031,Waiters and Waitresses,0.0
+35-3041,"Food Servers, Nonrestaurant",0.0
+35-9011,Dining Room and Cafeteria Attendants and Bartender Helpers,0.0
+35-9021,Dishwashers,0.0
+35-9031,"Hosts and Hostesses, Restaurant, Lounge, and Coffee Shop",0.0734
+39-1013,First-Line Supervisors of Gambling Services Workers,0.0
+39-1014,"First-Line Supervisors of Entertainment and Recreation Workers, Except Gambling Services",0.0443
+39-1022,First-Line Supervisors of Personal Service Workers,0.0407
+39-2011,Animal Trainers,0.0
+39-2021,Animal Caretakers,0.0
+39-3011,Gambling Dealers,0.0
+39-3012,Gambling and Sports Book Writers and Runners,0.0
+39-3021,Motion Picture Projectionists,0.0
+39-3031,"Ushers, Lobby Attendants, and Ticket Takers",0.0
+39-3091,Amusement and Recreation Attendants,0.0619
+39-3092,Costume Attendants,0.0
+39-3093,"Locker Room, Coatroom, and Dressing Room Attendants",0.0
+39-4011,Embalmers,0.0
+39-4021,Funeral Attendants,0.0
+39-4031,"Morticians, Undertakers, and Funeral Arrangers",0.0
+39-5011,Barbers,0.0
+39-5012,"Hairdressers, Hairstylists, and Cosmetologists",0.0304
+39-5091,"Makeup Artists, Theatrical and Performance",0.0
+39-5092,Manicurists and Pedicurists,0.0
+39-5093,Shampooers,0.0
+39-5094,Skincare Specialists,0.0
+39-6011,Baggage Porters and Bellhops,0.073
+39-6012,Concierges,0.1875
+39-9011,Childcare Workers,0.0122
+39-9031,Exercise Trainers and Group Fitness Instructors,0.0
+39-9032,Recreation Workers,0.0
+39-9041,Residential Advisors,0.067
+41-1011,First-Line Supervisors of Retail Sales Workers,0.2627
+41-1012,First-Line Supervisors of Non-Retail Sales Workers,0.2295
+41-2011,Cashiers,0.0846
+41-2012,Gambling Change Persons and Booth Cashiers,0.0
+41-2021,Counter and Rental Clerks,0.2048
+41-2022,Parts Salespersons,0.0
+41-2031,Retail Salespersons,0.3222
+41-3011,Advertising Sales Agents,0.1482
+41-3021,Insurance Sales Agents,0.3188
+41-3031,"Securities, Commodities, and Financial Services Sales Agents",0.4413
+41-3041,Travel Agents,0.4054
+41-4011,"Sales Representatives, Wholesale and Manufacturing, Technical and Scientific Products",0.2706
+41-4012,"Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products",0.6279
+41-9011,Demonstrators and Product Promoters,0.0788
+41-9012,Models,0.0
+41-9021,Real Estate Brokers,0.2609
+41-9022,Real Estate Sales Agents,0.2828
+41-9031,Sales Engineers,0.3224
+41-9041,Telemarketers,0.2852
+41-9091,"Door-to-Door Sales Workers, News and Street Vendors, and Related Workers",0.1758
+43-1011,First-Line Supervisors of Office and Administrative Support Workers,0.1856
+43-2011,"Switchboard Operators, Including Answering Service",0.3863
+43-2021,Telephone Operators,0.0
+43-3011,Bill and Account Collectors,0.2989
+43-3021,Billing and Posting Clerks,0.1924
+43-3031,"Bookkeeping, Accounting, and Auditing Clerks",0.3104
+43-3041,Gambling Cage Workers,0.0653
+43-3051,Payroll and Timekeeping Clerks,0.0487
+43-3061,Procurement Clerks,0.2436
+43-3071,Tellers,0.0231
+43-4011,Brokerage Clerks,0.1744
+43-4021,Correspondence Clerks,0.2786
+43-4031,"Court, Municipal, and License Clerks",0.102
+43-4041,"Credit Authorizers, Checkers, and Clerks",0.1296
+43-4051,Customer Service Representatives,0.7011
+43-4061,"Eligibility Interviewers, Government Programs",0.0597
+43-4071,File Clerks,0.1568
+43-4081,"Hotel, Motel, and Resort Desk Clerks",0.1725
+43-4111,"Interviewers, Except Eligibility and Loan",0.3851
+43-4121,"Library Assistants, Clerical",0.0978
+43-4131,Loan Interviewers and Clerks,0.2022
+43-4141,New Accounts Clerks,0.0
+43-4151,Order Clerks,0.0748
+43-4161,"Human Resources Assistants, Except Payroll and Timekeeping",0.4046
+43-4171,Receptionists and Information Clerks,0.4338
+43-4181,Reservation and Transportation Ticket Agents and Travel Clerks,0.2467
+43-5011,Cargo and Freight Agents,0.0165
+43-5021,Couriers and Messengers,0.0412
+43-5031,Public Safety Telecommunicators,0.0465
+43-5032,"Dispatchers, Except Police, Fire, and Ambulance",0.2258
+43-5041,"Meter Readers, Utilities",0.0
+43-5051,Postal Service Clerks,0.0
+43-5052,Postal Service Mail Carriers,0.0
+43-5053,"Postal Service Mail Sorters, Processors, and Processing Machine Operators",0.0
+43-5061,"Production, Planning, and Expediting Clerks",0.0934
+43-5071,"Shipping, Receiving, and Inventory Clerks",0.0
+43-5111,"Weighers, Measurers, Checkers, and Samplers, Recordkeeping",0.0
+43-6011,Executive Secretaries and Executive Administrative Assistants,0.2336
+43-6012,Legal Secretaries and Administrative Assistants,0.0
+43-6013,Medical Secretaries and Administrative Assistants,0.3623
+43-6014,"Secretaries and Administrative Assistants, Except Legal, Medical, and Executive",0.4528
+43-9021,Data Entry Keyers,0.6707
+43-9022,Word Processors and Typists,0.2385
+43-9031,Desktop Publishers,0.464
+43-9041,Insurance Claims and Policy Processing Clerks,0.1467
+43-9051,"Mail Clerks and Mail Machine Operators, Except Postal Service",0.0
+43-9061,"Office Clerks, General",0.4504
+43-9071,"Office Machine Operators, Except Computer",0.0239
+43-9081,Proofreaders and Copy Markers,0.1781
+43-9111,Statistical Assistants,0.5099

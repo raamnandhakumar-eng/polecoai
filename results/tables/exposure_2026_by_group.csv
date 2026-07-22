@@ -1,0 +1,6 @@
+group,mean,median,zero_share,max,n
+Computer & Mathematical,0.379,0.34,0.0,0.745,21
+Sales,0.236,0.262,0.15,0.628,20
+Office/Admin Support,0.191,0.165,0.2,0.701,50
+Food Service,0.009,0.0,0.8,0.073,15
+Personal Care & Service,0.019,0.0,0.704,0.188,27
