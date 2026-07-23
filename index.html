@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Frontline Exposure Gap | Sriramkrishnan Nandhakumar</title>
+<style>
+:root{--ink:#17211f;--muted:#5f6c69;--teal:#0b5f57;--soft:#eaf6f4;--line:#dce4e2;--page:#f5f7f6}
+*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--ink);font:18px/1.68 Georgia,serif}a{color:var(--teal)}
+header,main,footer{width:min(1040px,calc(100% - 32px));margin:auto}.hero{margin-top:32px;padding:56px;border:1px solid var(--line);border-radius:18px 18px 0 0;background:#fff}.eyebrow{font:700 13px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}h1{margin:12px 0;font-size:clamp(2.1rem,5vw,4rem);line-height:1.08}.meta{color:var(--muted);font-family:Arial,sans-serif}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.button{padding:11px 16px;border:1px solid var(--teal);border-radius:8px;font:700 14px Arial,sans-serif;text-decoration:none}.primary{background:var(--teal);color:#fff}.paper{padding:48px 56px;border:1px solid var(--line);border-top:0;background:#fff}.paper section+section{margin-top:50px}h2{border-bottom:1px solid var(--line);padding-bottom:8px;font-size:1.7rem}.lead{font-size:1.08rem}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:24px 0}.stat{padding:20px;border:1px solid var(--line);border-radius:10px;background:#fbfcfc}.stat strong{display:block;color:var(--teal);font:700 28px Arial,sans-serif}.stat span{color:var(--muted);font:13px/1.45 Arial,sans-serif}.findings{padding-left:22px}.findings li{margin:18px 0}.findings strong{color:var(--teal)}figure{margin:32px 0}figure img{width:100%;border:1px solid var(--line);border-radius:9px}figcaption{color:var(--muted);font:13px/1.45 Arial,sans-serif}.note{padding:16px 18px;background:var(--soft);border-left:4px solid var(--teal)}footer{padding:24px 0 50px;color:var(--muted);font:13px/1.5 Arial,sans-serif}@media(max-width:650px){.hero,.paper{padding:28px 22px}.stats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="hero">
+<p class="eyebrow">Independent working paper · Revised July 2026</p>
+<h1>The Frontline Exposure Gap: Evidence on AI Adoption in Retail and Service Occupations from Task-Level Usage Data</h1>
+<p class="meta"><strong>Sriramkrishnan Nandhakumar</strong><br>Boston University Questrom School of Business, MBA 2026</p>
+<div class="buttons">
+<a class="button primary" href="paper/paper.pdf" target="_blank">Read the paper</a>
+<a class="button" href="https://github.com/raamnandhakumar-eng/polecoai">Code and data</a>
+</div>
+</header>
+<main class="paper">
+<section>
+<h2>Abstract</h2>
+<p class="lead">Generative AI can raise productivity after workers receive it. But those gains cannot be broadly shared when adoption bypasses large parts of the workforce. This paper measures realized AI adoption in frontline service occupations using the Anthropic Economic Index, O*NET task statements, and U.S. employment and wage data.</p>
+<p>Sales, office and administrative support, food preparation and serving, and personal care and service account for <strong>31.7% of U.S. employment but only 11.1% of task-matched AI usage</strong>. Correcting an occupational-classification problem reduces the administrative-support representation index from 0.65 to 0.34. The 2025 releases suggest that the gap remained large, while the February 2026 data reveal a divide between screen-mediated and physically co-present frontline work.</p>
+<div class="stats">
+<div class="stat"><strong>31.7%</strong><span>Frontline share of U.S. employment</span></div>
+<div class="stat"><strong>11.1%</strong><span>Frontline share of task-matched AI usage</span></div>
+<div class="stat"><strong>0.34</strong><span>Corrected administrative-support representation index</span></div>
+<div class="stat"><strong>62.7%</strong><span>Automation-style share in frontline administrative use</span></div>
+</div>
+</section>
+<section>
+<h2>Why I studied this</h2>
+<p>While operating Krishna Foods and Energy, I saw a clear divide between back-office work and the production and retail floor. Forecasting, supplier comparisons, pricing, customer correspondence, and reporting could be digitized. Packing, stocking, serving customers, supervising production, and solving real-time quality problems remained physical and difficult to mediate through a chat interface.</p>
+<p>The task-level data reproduce that practical divide: AI enters through the information-processing edges of frontline work, while the in-person core remains largely absent.</p>
+</section>
+<section>
+<h2>Main findings</h2>
+<ol class="findings">
+<li><strong>Frontline occupations are deeply underrepresented.</strong> The four groups account for 31.7% of employment but 11.1% of observed task-matched usage.</li>
+<li><strong>Occupational classification hides part of the gap.</strong> Removing four technical occupations lowers the administrative-support index from 0.645 to 0.338.</li>
+<li><strong>Wages explain little of the pattern.</strong> Across 585 occupations, the wage elasticity is 0.38 with an HC1 robust standard error of 0.19.</li>
+<li><strong>The gap remained large across the 2025 releases.</strong> No frontline group approached parity, though differences in the release pipelines limit trend interpretation.</li>
+<li><strong>Frontline use is more automation-oriented.</strong> Automation-style interactions make up 62.7% of frontline administrative use, compared with 43.0% elsewhere.</li>
+<li><strong>Exposure is polarized within frontline work.</strong> Customer Service Representatives score 0.70, Retail Salespersons 0.32, and Cashiers 0.08; 44 of 112 frontline occupations register zero exposure.</li>
+</ol>
+</section>
+<section>
+<h2>Selected figures</h2>
+<figure><img src="figures/fig1_representation.png" alt="AI usage and employment shares"><figcaption>AI usage and employment shares across U.S. occupation groups.</figcaption></figure>
+<figure><img src="figures/fig4_temporal.png" alt="Representation indices in 2025"><figcaption>Representation indices in the February and August 2025 releases.</figcaption></figure>
+<figure><img src="figures/fig5_automation_share.png" alt="Automation-style share"><figcaption>Automation-style share of classified conversations by occupation group.</figcaption></figure>
+<figure><img src="figures/fig6_exposure_2026.png" alt="Observed AI exposure in 2026"><figcaption>Observed AI exposure by occupation in February 2026.</figcaption></figure>
+</section>
+<section>
+<h2>Data and interpretation</h2>
+<p>The analysis combines the Anthropic Economic Index, O*NET task and wage data, BLS Occupational Employment and Wage Statistics, and Anthropic’s February 2026 observed-exposure measure.</p>
+<p class="note"><strong>Representation index</strong> = an occupation group’s share of AI usage divided by its share of employment. A value below 1 indicates underrepresentation.</p>
+<p>The study is descriptive. It does not estimate a causal effect of AI on employment, wages, productivity, or skills. The data capture Claude usage rather than all generative AI use, and user occupation is inferred from task content rather than directly observed.</p>
+</section>
+<section>
+<h2>Citation</h2>
+<p>Nandhakumar, S. (2026). <em>The Frontline Exposure Gap: Evidence on AI Adoption in Retail and Service Occupations from Task-Level Usage Data</em>. Working paper.</p>
+</section>
+</main>
+<footer>Replication code, figures, tests, and documentation are available at <a href="https://github.com/raamnandhakumar-eng/polecoai">github.com/raamnandhakumar-eng/polecoai</a>.</footer>
+</body>
+</html>
