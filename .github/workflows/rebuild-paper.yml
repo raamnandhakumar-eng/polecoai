@@ -1,0 +1,62 @@
+name: rebuild-paper-pdf
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "paper/paper.md"
+      - "scripts/build_paper.py"
+      - ".github/workflows/rebuild-paper.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild-paper:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install project
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Build paper PDF
+        run: python scripts/build_paper.py
+
+      - name: Validate generated PDF
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("paper/paper.pdf")
+          data = path.read_bytes()
+          if not data.startswith(b"%PDF-"):
+              raise SystemExit("Generated file does not have a PDF header")
+          if len(data) < 100_000:
+              raise SystemExit(f"Generated PDF is unexpectedly small: {len(data)} bytes")
+          if b"%%EOF" not in data[-4096:]:
+              raise SystemExit("Generated PDF does not contain a valid EOF marker")
+          print(f"Validated {path}: {len(data):,} bytes")
+          PY
+
+      - name: Commit readable PDF
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f paper/paper.pdf
+          if git diff --cached --quiet; then
+            echo "PDF is already current."
+          else
+            git commit -m "Rebuild readable working paper PDF"
+            git push
+          fi
