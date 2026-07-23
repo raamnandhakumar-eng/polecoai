@@ -4,7 +4,7 @@
 Boston University Questrom School of Business, MBA 2026  
 Working paper, revised July 2026
 
-**[Open or download the paper PDF](https://raw.githubusercontent.com/raamnandhakumar-eng/polecoai/main/paper/paper.pdf)** · [Read the paper in Markdown](paper/paper.md) · [Methodology](docs/methodology.md) · [Reproducibility record](docs/reproducibility.md)
+**[Read the rebuilt paper PDF](https://raw.githubusercontent.com/raamnandhakumar-eng/polecoai/3d9e0b55c7455252ab0a28367912c7ce0481264f/paper/paper.pdf)** · [Read the paper in Markdown](paper/paper.md) · [Methodology](docs/methodology.md) · [Reproducibility record](docs/reproducibility.md)
 
 ![AI usage and employment shares across U.S. occupation groups](figures/fig1_representation.png)
 
