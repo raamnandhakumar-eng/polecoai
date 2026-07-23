@@ -4,7 +4,7 @@
 Boston University Questrom School of Business, MBA 2026  
 Working paper, revised July 2026
 
-**[Read the paper online](paper/paper.md)** · **[Open the PDF](https://github.com/raamnandhakumar-eng/polecoai/raw/refs/heads/main/paper/paper.pdf)** · [Methodology](docs/methodology.md) · [Reproducibility record](docs/reproducibility.md)
+**[Read the paper online](https://raamnandhakumar-eng.github.io/polecoai/)** · **[Open the PDF](paper/paper.pdf)** · [Methodology](docs/methodology.md) · [Reproducibility record](docs/reproducibility.md)
 
 ![AI usage and employment shares across U.S. occupation groups](figures/fig1_representation.png)
 
@@ -18,11 +18,11 @@ Generative AI can raise productivity after workers receive it. But those gains c
 
 Frontline occupations in sales, office and administrative support, food preparation and serving, and personal care and service account for **31.7% of U.S. employment but only 11.1% of task-matched AI usage**. The gap is larger than the raw occupational classification suggests. Removing four technical occupations historically classified under administrative-support codes lowers that group’s representation index from **0.65 to 0.34**. A separate task-splitting robustness check leaves the estimates essentially unchanged.
 
-Comparisons of the February and August 2025 releases suggest that this underrepresentation persisted rather than closed. When AI does reach frontline tasks, it is also more likely to involve delegation. Automation-style interactions account for **62.7%** of classified frontline administrative-support conversations, compared with **43.0%** in other occupations.
+Comparisons of the February and August 2025 releases provide suggestive evidence that this underrepresentation persisted rather than closed. Conditional on reaching frontline tasks, AI use is also more likely to involve delegation. Automation-style interactions account for **62.7%** of classified frontline administrative-support conversations, compared with **43.0%** in other occupations.
 
-Occupation-level regressions show that the gap is not mainly a wage gradient. The estimated wage elasticity of usage is **0.38** with an HC1 robust standard error of **0.19**, while the coefficient on a frontline indicator is statistically indistinguishable from zero. The results are more consistent with AI usage failing to scale with the number of people working in frontline occupations.
+Occupation-level regressions show that the gap is not primarily a wage gradient. The estimated wage elasticity of usage is **0.38** with an HC1 robust standard error of **0.19**, while the coefficient on a frontline indicator is statistically indistinguishable from zero. The evidence is more consistent with usage failing to scale with the number of workers in frontline occupations.
 
-The February 2026 exposure data reveal another divide within frontline work. Screen-mediated occupations such as customer service and data entry show high exposure. Physically co-present occupations such as food service and personal care remain close to zero. The evidence points to a gap shaped by task medium, worker access, workflow design, and organizational investment, not technical capability alone.
+The February 2026 exposure data reveal a second divide within frontline work. Screen-mediated occupations such as customer service and data entry show high exposure, while physically co-present occupations such as food service and personal care remain close to zero. The results point to a gap shaped by task medium, worker access, workflow design, and organizational investment, not technical capability alone.
 
 ## Main findings
 
@@ -38,7 +38,7 @@ The four frontline groups jointly account for **31.7% of employment and 11.1% of
 | Food preparation and serving | 0.06 | 0.06 |
 | Computer and mathematical | 10.94 | 10.94 |
 
-A representation index of 1 means an occupation group’s usage share equals its employment share. Retail sales appears in the usage data at roughly **one-fortieth the per-worker rate of software work**. Food service appears at roughly **one-hundred-eightieth the rate**.
+A representation index of 1 means that an occupation group’s usage share equals its employment share. Retail sales appears in the usage data at roughly **one-fortieth the per-worker rate of software work**. Food service appears at roughly **one-hundred-eightieth the rate**.
 
 ### 2. Occupational classification initially hides part of the gap
 
