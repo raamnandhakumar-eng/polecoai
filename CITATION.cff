@@ -7,10 +7,13 @@ authors:
     given-names: Sriramkrishnan
     email: raam.nandhakumar@gmail.com
 repository-code: "https://github.com/raamnandhakumar-eng/polecoai"
-url: "https://github.com/raamnandhakumar-eng/polecoai"
+url: "https://raamnandhakumar-eng.github.io/polecoai/"
 version: 0.1.0
 date-released: 2026-07-21
 license: MIT
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.21522366"
 preferred-citation:
   type: report
   title: "The Frontline Exposure Gap: Evidence on AI Adoption in Retail and Service Occupations from Task-Level Usage Data"
@@ -18,4 +21,5 @@ preferred-citation:
     - family-names: Nandhakumar
       given-names: Sriramkrishnan
   year: 2026
-  url: "https://github.com/raamnandhakumar-eng/polecoai"
+  doi: "10.5281/zenodo.21522366"
+  url: "https://doi.org/10.5281/zenodo.21522366"
