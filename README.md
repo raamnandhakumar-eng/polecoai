@@ -4,13 +4,11 @@
 Boston University Questrom School of Business, MBA 2026  
 Working paper, revised July 2026
 
-**[Read the paper online](https://raamnandhakumar-eng.github.io/polecoai/)** · **[Open the PDF](paper/paper.pdf)** · [Methodology](docs/methodology.md) · [Reproducibility record](docs/reproducibility.md)
+[Paper webpage](https://raamnandhakumar-eng.github.io/polecoai/) · [PDF](paper/paper.pdf) · [Method notes](docs/methodology.md) · [Result checks](docs/checks.md)
 
 ![AI usage and employment shares across U.S. occupation groups](figures/fig1_representation.png)
 
-Most research on AI and work asks what the technology *could* do. This paper asks a more immediate question:
-
-> **Where is AI actually being used, and which workers are still being left out?**
+This paper studies where AI is currently being used and which workers remain underrepresented.
 
 ## Abstract
 
@@ -24,7 +22,7 @@ Occupation-level regressions show that the gap is not primarily a wage gradient.
 
 The February 2026 exposure data reveal a second divide within frontline work. Screen-mediated occupations such as customer service and data entry show high exposure, while physically co-present occupations such as food service and personal care remain close to zero. The results point to a gap shaped by task medium, worker access, workflow design, and organizational investment, not technical capability alone.
 
-## Main findings
+## Results
 
 ### 1. Frontline occupations are deeply underrepresented
 
@@ -108,7 +106,7 @@ While operating Krishna Foods and Energy, I saw the divide between back-office w
 
 The task-level data reproduce that practical divide. AI appears first in the information-processing tasks embedded within frontline occupations, while the in-person core of the work remains largely absent.
 
-## Why the findings matter
+## Interpretation
 
 Productivity research usually measures what happens after workers receive an AI tool. That does not answer who receives access in the first place.
 
@@ -125,7 +123,7 @@ The analysis combines the Anthropic Economic Index, O*NET task and wage data, BL
 
 The study is descriptive. It reports usage shares, employment shares, representation indices, interaction-mode composition, and occupation-level regressions with HC1 heteroskedasticity-robust standard errors. It does not estimate a causal effect of AI on employment or wages.
 
-## Important limitations
+## Limitations
 
 - The data capture Claude usage, not all generative AI use.
 - User occupation is inferred from task content rather than directly observed.

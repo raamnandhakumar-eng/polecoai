@@ -1,4 +1,4 @@
-# Reproducibility record
+# Result checks
 
 The final local run used Python 3.12. Generated tables and figures were rebuilt
 after the repository reorganization and compared with the pre-refactor files.
