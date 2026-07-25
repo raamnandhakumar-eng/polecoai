@@ -28,5 +28,3 @@ smoke:
 	python tests/test_smoke.py
 
 reproduce: data analysis extensions robustness exposure verify paper
-
-# temporary label refresh
