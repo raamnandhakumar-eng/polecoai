@@ -1,112 +1,240 @@
 # The Frontline Exposure Gap: Evidence on AI Adoption in Retail and Service Occupations from Task-Level Usage Data
 
-Task-level evidence on observed AI use across U.S. occupations, using the Anthropic Economic Index, O*NET-SOC task statements, and BLS employment data.
+**Sriramkrishnan Nandhakumar**
 
-**Headline finding:** Frontline occupations account for **31.7% of U.S. employment but only 11.1% of observed task-matched AI usage.** Excluding technical occupations classified under clerical codes reduces the administrative-support representation index from **0.645 to 0.338**. The estimated wage elasticity of usage is **0.38** with an HC1 standard error of **0.19**.
+## Abstract
 
-## Research versions
+This project studies how observed generative-AI use is distributed across U.S.
+occupations. Version 1 shows that frontline occupations account for **31.7% of
+employment but only 11.1% of observed task-matched AI usage**. Version 2 extends
+the analysis by separating the extensive margin of adoption from usage
+intensity, testing two O*NET-based definitions of frontline work, and comparing
+theoretical task exposure with observed use. Computer use is positively
+associated with adoption, while physical presence is negatively associated
+with both adoption and conditional usage intensity. The evidence is
+occupation-level and descriptive. It does not identify causal effects on
+employment, wages, productivity, or access.
 
-This repository contains the original working paper and a second-stage research
-extension. Version 2 builds on Version 1. It does not replace or revise
-the original paper or its headline results.
+> **Version note:** The DOI, online paper, and PDF refer to **Version 1**.
+> **Version 2** is a reproducible research extension in this repository. It
+> preserves the Version 1 paper and its headline results.
 
-| Part | Focus | Main contribution | Status |
-|---|---|---|---|
-| **Version 1 paper** | Unequal observed AI adoption across occupations | Frontline representation indices, taxonomy audit, shared-task robustness, and wage regression | Working paper referenced in the fellowship application |
-| **Version 2 extension** | Potential AI benefit versus observed use | Two-part adoption model, O*NET-based frontline definitions, and AI access-gap benchmark | Reproducible repository extension |
+## Paper: Version 1
 
-## Version 1: The original paper
-
-**Question:** How much observed AI use reaches frontline occupations, relative
-to their share of U.S. employment?
-
-- **Preprint (DOI):** https://doi.org/10.5281/zenodo.21522366
+- **Preprint and DOI:** https://doi.org/10.5281/zenodo.21522366
 - **Read online:** https://raamnandhakumar-eng.github.io/polecoai/
 - **PDF:** [`paper/paper.pdf`](paper/paper.pdf)
+- **Status:** Sole-authored working paper
+- **JEL codes:** J23, J24, O33
 
-Version 1 is a sole-authored working paper. JEL: J23, J24, O33.
+The exact repository snapshot referenced in fellowship materials is preserved
+at [`fellowship-submission-v1`](https://github.com/raamnandhakumar-eng/polecoai/tree/fellowship-submission-v1).
 
-### Version 1 findings
+## Research question
 
-- Frontline occupations account for **31.7% of employment** but only **11.1% of
-  observed task-matched AI usage**.
-- The sales representation index is **0.26**. The administrative-support index
-  falls from **0.645 to 0.338** after excluding technical occupations classified
-  under clerical codes.
-- Among occupations with positive usage and wage data, the estimated wage
-  elasticity is **0.38** with an HC1 standard error of **0.19**.
-- The taxonomy audit and shared-task robustness checks leave the main exposure
-  gap intact.
+How does realized AI adoption compare with the economic importance of
+frontline work?
 
-The exact version referenced in fellowship materials remains available at
-[`fellowship-submission-v1`](https://github.com/raamnandhakumar-eng/polecoai/tree/fellowship-submission-v1).
+The extension asks three related questions:
 
-## Version 2: Adoption and access-gap extension
+1. Which occupations register any observed AI use?
+2. Conditional on positive use, which occupations use AI more intensively?
+3. Where is theoretical task exposure high relative to observed adoption?
 
-**Question:** Who has the potential to benefit from AI, who actually uses it,
-and what explains the gap?
+## Contribution
 
-Version 2 keeps the Version 1 paper and its **31.7% vs 11.1%** headline intact.
-It is currently a repository extension and is not yet included in the linked
-Version 1 PDF.
-It extends the analysis in three ways:
+The project makes four descriptive contributions:
 
-1. A two-part model first estimates the probability of any observed AI use,
-   then estimates usage intensity among occupations with positive use.
-2. Two O*NET-based definitions test whether the frontline gap persists for
-   occupations with high physical presence or high customer interaction.
-3. An AI access-gap benchmark compares theoretical task exposure with observed
-   AI use and tests which occupation characteristics predict the difference.
+1. It measures occupational representation in AI usage relative to employment.
+2. It audits the occupational taxonomy and tests shared-task assignments.
+3. It separates the extensive and intensive margins of observed adoption.
+4. It constructs a potential-versus-observed benchmark to identify possible
+   diffusion frictions.
 
-### Version 2 findings
+## Data
 
-- In the extensive-margin logit, a one-standard-deviation increase in computer
-  use is associated with a **16.7 percentage-point** increase in the probability
-  of any observed AI use. A one-standard-deviation increase in physical presence
-  is associated with a **10.4 percentage-point decrease**. The model uses 732
-  occupations and HC1 standard errors.
-- The representation index remains below one under the current SOC definition
-  (**0.351**), a high-physical-presence definition (**0.104**), and a
-  high-customer-facing definition (**0.348**).
-- The access-gap regression finds larger potential-minus-observed gaps in
-  computer-intensive and customer-facing occupations. This is descriptive and
-  does not identify a causal access barrier.
+| Source | Use in the analysis |
+|---|---|
+| Anthropic Economic Index, February 2025 | Task-level AI usage matched to O*NET-SOC occupations |
+| Anthropic Economic Index, August 2025 | Cross-release comparison and collaboration modes |
+| Anthropic AI Exposure Index, March 2026 | Occupation-level observed exposure for Version 2 |
+| O*NET 30.2 | Education, computer use, physical presence, and customer interaction |
+| May 2023 OEWS | Employment shares and occupation-level wage controls |
+| GPTs-are-GPTs | Theoretical task-exposure benchmark |
 
-### Version 2 figures
+The pipeline verifies the pinned Version 2 source files with SHA-256 hashes.
+See [`docs/methodology.md`](docs/methodology.md) for construction details and
+[`docs/checks.md`](docs/checks.md) for reported-result checks.
 
-#### Potential versus observed AI use
+## Empirical strategy
+
+### Version 1: Representation and wage gradient
+
+For occupation group $g$, the representation index is
+
+$$
+R_g = \frac{s_g^U}{s_g^E},
+$$
+
+where $s_g^U$ is the group's share of task-matched AI usage and $s_g^E$
+is its share of national employment. A value below one indicates
+underrepresentation in observed AI use.
+
+The occupation-level wage specification is
+
+$$
+\log(s_o^U) =
+\alpha + \beta \log(w_o) + \gamma Frontline_o + \varepsilon_o.
+$$
+
+The wage regression uses 585 occupations with positive usage and wage data.
+Standard errors use the HC1 heteroskedasticity correction.
+
+### Version 2: Extensive and intensive margins
+
+The first stage estimates whether occupation $o$ has any observed AI use:
+
+$$
+\Pr(Observed_o > 0) =
+F(\alpha + X_o'\beta).
+$$
+
+The second stage estimates usage intensity among occupations with positive use:
+
+$$
+\log(Observed_o \mid Observed_o > 0) =
+\alpha + X_o'\beta + \varepsilon_o.
+$$
+
+The covariates are log wage, current frontline status, required education,
+computer use, and physical presence. Continuous predictors are standardized.
+The first-stage logit uses 732 occupations. The second-stage OLS model uses 333
+occupations. Both report HC1 standard errors. This is a descriptive two-part
+model, not a Heckman selection model.
+
+### Version 2: Alternative frontline definitions
+
+The extension compares three definitions:
+
+- **A. Current SOC definition:** Sales, Office and Administrative Support, Food
+  Preparation and Serving, and Personal Care and Service.
+- **B. Physical-presence definition:** occupations in the top quartile of the
+  O*NET physical-presence index.
+- **C. Customer-facing definition:** occupations in the top quartile of the
+  O*NET customer-facing index.
+
+### Version 2: Potential versus observed use
+
+The extension defines
+
+$$
+AccessGap_o =
+TheoreticalExposure_o - ObservedExposure_o.
+$$
+
+The gap regression includes log wage, frontline status, education, computer
+use, physical presence, and customer interaction. Because the theoretical and
+observed measures use different task universes and methods, this variable is a
+benchmark. It is not a literal measure of denied workplace access.
+
+## Main results
+
+### Version 1
+
+| Occupation group | Usage share | Employment share | Representation index |
+|---|---:|---:|---:|
+| Office and Administrative Support | 7.87% | 12.20% | 0.64 |
+| Sales and Related | 2.27% | 8.81% | 0.26 |
+| Personal Care and Service | 0.46% | 2.00% | 0.23 |
+| Food Preparation and Serving | 0.53% | 8.72% | 0.06 |
+| **Four frontline groups** | **11.13%** | **31.74%** | **0.351** |
+
+Additional Version 1 results:
+
+- Excluding four technical occupations classified under administrative-support
+  codes reduces that group's representation index from **0.645 to 0.338**.
+- The estimated wage elasticity of usage is **0.384**, with an HC1 standard
+  error of **0.185**.
+- Dividing shared tasks across every linked occupation leaves the four
+  frontline representation indices unchanged to three decimal places.
+
+### Version 2
+
+| Predictor | Any-use average marginal effect | Log usage, conditional on positive use |
+|---|---:|---:|
+| Log annual mean wage | -0.008 | 0.046 |
+| Current frontline SOC group | 0.129 | 0.449 |
+| Required education | 0.014 | -0.016 |
+| Computer use | **0.167** | **0.181** |
+| Physical presence | **-0.104** | **-0.544** |
+
+Computer use is positively associated with both the probability and intensity
+of observed use. Physical presence is negatively associated with both. Wage
+and education are not statistically distinguishable from zero in these
+specifications.
+
+The conditional frontline coefficient does not reverse the unconditional
+headline gap. It compares occupations with similar wage, education, computer
+use, and physical-presence measures.
+
+| Frontline definition | Usage share | Employment share | Representation index |
+|---|---:|---:|---:|
+| Current four SOC groups | 11.13% | 31.74% | **0.351** |
+| High physical presence | 2.10% | 20.17% | **0.104** |
+| High customer interaction | 13.39% | 38.45% | **0.348** |
+
+Underrepresentation persists across all three definitions. In the access-gap
+regression, a one-standard-deviation increase in computer use is associated
+with a **0.135** larger theoretical-minus-observed gap. Customer interaction is
+associated with a **0.030** larger gap. These estimates identify occupations
+for further study, not causal access barriers.
+
+See [`docs/v2_extension.md`](docs/v2_extension.md) for the complete Version 2
+estimates and interpretation.
+
+## Figures
+
+### Potential versus observed AI use
 
 ![Potential versus observed AI use by occupation](figures/fig7_potential_observed_gap.png)
 
-*The access gap is the difference between theoretical task exposure and
-observed AI use. Points above the diagonal have more observed use than the
-theoretical benchmark; points below it have less.*
+Points below the diagonal have less observed use than the theoretical benchmark.
 
-#### Exposure gap under three frontline definitions
+### Representation under three frontline definitions
 
 ![Employment and task-usage shares under three frontline definitions](figures/fig8_frontline_definitions.png)
 
-*Frontline occupations remain underrepresented in observed AI use under the
-current SOC definition and the physical-presence and customer-facing robustness
-definitions.*
+The observed exposure gap persists under the current SOC, physical-presence,
+and customer-facing definitions.
 
-See [`docs/v2_extension.md`](docs/v2_extension.md) for definitions, estimates,
-and limitations.
+## Interpretation
 
-## Repository structure
+The results are consistent with uneven occupational diffusion. Observed AI use
+is concentrated in screen-mediated work, while physically present work has a
+lower probability and intensity of use. The potential-versus-observed benchmark
+also identifies computer-intensive and customer-facing occupations where
+modeled capability exceeds observed penetration.
 
-```text
-data/             Downloaded inputs, processed files, and the committed 2026 exposure subset
-src/polecoai/     Analysis modules
-scripts/          Download and rebuild commands
-results/tables/   Generated tables
-figures/          Generated figures
-paper/            Paper website source and PDF
-docs/             Method notes and result checks
-tests/            Reproduction and smoke checks
-```
+These patterns may reflect task suitability, device access, employer adoption,
+workflow design, worker training, or measurement differences. Occupation-level
+data cannot distinguish among these mechanisms.
 
-## Reproduce the results
+## Policy relevance
+
+If productivity gains depend on access to useful AI tools, uneven workplace
+diffusion could widen productivity and wage differences. The results motivate
+focused evaluation of:
+
+- employer-provided AI access at the point of work;
+- role-specific worker training;
+- workflow redesign centered on augmentation;
+- devices and digital infrastructure for frontline settings; and
+- deployment rules that preserve worker judgment and skill development.
+
+The current evidence does not estimate the effects of these interventions.
+Employer-level or worker-level research is needed.
+
+## Reproduce
 
 ```bash
 git clone https://github.com/raamnandhakumar-eng/polecoai.git
@@ -118,48 +246,54 @@ python -m pip install -e ".[dev]"
 make reproduce
 ```
 
-The first run downloads the source data. Generated tables are written to `results/tables/`, figures to `figures/`, and the rebuilt paper to `paper/paper.pdf`.
+The first run downloads the source data. Generated tables are written to
+`results/tables/`, figures to `figures/`, and the rebuilt Version 1 paper to
+`paper/paper.pdf`.
 
-Run the reported-result checks separately with:
+Run the reported-result checks with:
 
 ```bash
 python tests/test_reported_results.py
+python -m pytest -q
 ```
 
-## Data
+## Repository structure
 
-- **Anthropic Economic Index, `release_2025_02_10`** — task mappings, O*NET task statements, SOC structure, May 2023 BLS employment data, and wage data.
-- **Anthropic Economic Index, `release_2025_09_15`** — the global task-level slice from the August 4–11, 2025 V3 usage file.
-- **Anthropic AI Exposure Index, March 2026 release** — the committed five-group subset and the pinned full occupation file used by v2.
-- **O*NET 30.2** — education, computer-use, physical-presence, and customer-facing measures.
-- **May 2023 OEWS** — detailed occupation employment and wage controls.
-- **GPTs-are-GPTs** — theoretical task exposure used for the v2 potential benchmark.
+```text
+data/             Downloaded inputs, processed files, and pinned reference data
+src/polecoai/     Analysis modules
+scripts/          Download and rebuild commands
+results/tables/   Generated estimates and summary tables
+figures/          Generated figures
+paper/            Version 1 paper website source and PDF
+docs/             Methodology, findings, checks, and Version 2 notes
+tests/            Reproduction and estimator checks
+```
 
-The download script fetches the 2025 AEI files and verifies the pinned v2 inputs
-with SHA-256 hashes. Files under `data/raw/` and `data/processed/` are not
-committed. Anthropic Economic Index data are distributed under CC BY 4.0.
-O*NET, BLS, OpenAI, and other third-party files retain their original terms.
+## Robustness and validation
 
-## Robustness
+The repository includes:
 
-The checks cover the SOC 43 taxonomy audit, shared-task splitting,
-February-to-August 2025 comparisons, occupation-level wage regressions, the v2
-two-part model, all three frontline definitions, and the access-gap regression.
-The four original frontline representation indices are unchanged to three
-decimals under task splitting.
-
-See [`docs/methodology.md`](docs/methodology.md) and [`docs/checks.md`](docs/checks.md).
+- a SOC taxonomy audit;
+- shared-task splitting;
+- February-to-August 2025 comparisons;
+- occupation-level wage regressions;
+- the Version 2 two-part model;
+- three frontline definitions;
+- the access-gap regression; and
+- direct assertions for reported numeric results.
 
 ## Limitations
 
-- The data capture Claude usage, not all generative AI use.
-- User occupation is inferred from task content rather than observed directly.
-- Conversation share is not the same as work-time share or productivity.
-- The February and August 2025 releases do not form a methodologically consistent panel.
+- The usage data reflect Anthropic products, not all generative-AI use.
+- Occupations are inferred from task content rather than observed from users.
+- Conversation share is not work-time share, productivity, or welfare.
+- The February and August 2025 releases do not form a consistent panel.
 - Employer-deployed AI may be underrepresented in consumer conversation data.
-- The analysis is descriptive and does not identify causal effects on employment, wages, skills, or productivity.
-- The v2 access gap compares measures built with different task universes and
-  should be read as a benchmark, not a literal measure of denied tool access.
+- The theoretical and observed exposure measures use different task universes.
+- Top-quartile O*NET definitions remain researcher choices.
+- The analysis does not identify causal effects on employment, wages, skills,
+  productivity, or access.
 
 ## Citation for Version 1
 
@@ -174,18 +308,15 @@ See [`docs/methodology.md`](docs/methodology.md) and [`docs/checks.md`](docs/che
 }
 ```
 
-GitHub also reads [`CITATION.cff`](CITATION.cff) and provides a **Cite this repository** menu.
-
-## Why I studied this
-
-While running a manufacturing and retail business, I watched back-office work digitize quickly while production-floor and customer-facing work changed more slowly. This paper tests whether that divide appears across the U.S. workforce.
+GitHub also reads [`CITATION.cff`](CITATION.cff) and provides a **Cite this
+repository** menu.
 
 ## License
 
 - Code: [MIT](LICENSE)
 - Manuscript text and original figures: [CC BY 4.0](LICENSE-CONTENT.md)
-- Third-party data remain under their original licenses.
+- Third-party data retain their original terms.
 
 ## Contact
 
-Raam Nandhakumar — raam.nandhakumar@gmail.com
+Raam Nandhakumar: raam.nandhakumar@gmail.com
