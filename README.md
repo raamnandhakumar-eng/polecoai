@@ -21,7 +21,7 @@ employment, wages, productivity, or access.
 
 ## Paper: Version 1
 
-- **Preprint and DOI:** https://doi.org/10.5281/zenodo.21522366
+- **SSRN preprint and DOI:** https://dx.doi.org/10.2139/ssrn.7162039
 - **Read online:** https://raamnandhakumar-eng.github.io/polecoai/
 - **PDF:** [`paper/paper.pdf`](paper/paper.pdf)
 - **Status:** Sole-authored working paper
@@ -303,8 +303,8 @@ The repository includes:
   title = {The Frontline Exposure Gap: Evidence on AI Adoption in Retail and Service Occupations from Task-Level Usage Data},
   year = {2026},
   type = {Working paper},
-  doi = {10.5281/zenodo.21522366},
-  url = {https://doi.org/10.5281/zenodo.21522366}
+  doi = {10.2139/ssrn.7162039},
+  url = {https://dx.doi.org/10.2139/ssrn.7162039}
 }
 ```
 
