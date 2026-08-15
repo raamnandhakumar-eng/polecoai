@@ -4,23 +4,61 @@ Task-level evidence on observed AI use across U.S. occupations, using the Anthro
 
 **Headline finding:** Frontline occupations account for **31.7% of U.S. employment but only 11.1% of observed task-matched AI usage.** Excluding technical occupations classified under clerical codes reduces the administrative-support representation index from **0.645 to 0.338**. The estimated wage elasticity of usage is **0.38** with an HC1 standard error of **0.19**.
 
-## Version 1 paper
+## Research versions
 
-- **Version 1 preprint (DOI):** https://doi.org/10.5281/zenodo.21522366
-- **Read Version 1 online:** https://raamnandhakumar-eng.github.io/polecoai/
-- **Version 1 PDF:** [`paper/paper.pdf`](paper/paper.pdf)
+This repository contains the original working paper and a second-stage research
+extension. Version 2 builds on Version 1. It does not replace or revise
+the original paper or its headline results.
 
-The manuscript linked above is **Version 1** of this paper.
+| Part | Focus | Main contribution | Status |
+|---|---|---|---|
+| **Version 1 paper** | Unequal observed AI adoption across occupations | Frontline representation indices, taxonomy audit, shared-task robustness, and wage regression | Working paper referenced in the fellowship application |
+| **Version 2 extension** | Potential AI benefit versus observed use | Two-part adoption model, O*NET-based frontline definitions, and AI access-gap benchmark | Reproducible repository extension |
+
+## Version 1: The original paper
+
+**Question:** How much observed AI use reaches frontline occupations, relative
+to their share of U.S. employment?
+
+- **Preprint (DOI):** https://doi.org/10.5281/zenodo.21522366
+- **Read online:** https://raamnandhakumar-eng.github.io/polecoai/
+- **PDF:** [`paper/paper.pdf`](paper/paper.pdf)
+
 Version 1 is a sole-authored working paper. JEL: J23, J24, O33.
 
-## v2 research extension
+### Version 1 findings
+
+- Frontline occupations account for **31.7% of employment** but only **11.1% of
+  observed task-matched AI usage**.
+- The sales representation index is **0.26**. The administrative-support index
+  falls from **0.645 to 0.338** after excluding technical occupations classified
+  under clerical codes.
+- Among occupations with positive usage and wage data, the estimated wage
+  elasticity is **0.38** with an HC1 standard error of **0.19**.
+- The taxonomy audit and shared-task robustness checks leave the main exposure
+  gap intact.
+
+The exact version referenced in fellowship materials remains available at
+[`fellowship-submission-v1`](https://github.com/raamnandhakumar-eng/polecoai/tree/fellowship-submission-v1).
+
+## Version 2: Adoption and access-gap extension
 
 **Question:** Who has the potential to benefit from AI, who actually uses it,
 and what explains the gap?
 
-The v2 extension keeps the paper and its **31.7% vs 11.1%** headline intact.
-It adds a two-part adoption model, two O*NET-based frontline definitions, and
-a theoretical-minus-observed **AI access gap**.
+Version 2 keeps the Version 1 paper and its **31.7% vs 11.1%** headline intact.
+It is currently a repository extension and is not yet included in the linked
+Version 1 PDF.
+It extends the analysis in three ways:
+
+1. A two-part model first estimates the probability of any observed AI use,
+   then estimates usage intensity among occupations with positive use.
+2. Two O*NET-based definitions test whether the frontline gap persists for
+   occupations with high physical presence or high customer interaction.
+3. An AI access-gap benchmark compares theoretical task exposure with observed
+   AI use and tests which occupation characteristics predict the difference.
+
+### Version 2 findings
 
 - In the extensive-margin logit, a one-standard-deviation increase in computer
   use is associated with a **16.7 percentage-point** increase in the probability
@@ -34,7 +72,7 @@ a theoretical-minus-observed **AI access gap**.
   computer-intensive and customer-facing occupations. This is descriptive and
   does not identify a causal access barrier.
 
-### v2 figures
+### Version 2 figures
 
 #### Potential versus observed AI use
 
@@ -53,9 +91,7 @@ current SOC definition and the physical-presence and customer-facing robustness
 definitions.*
 
 See [`docs/v2_extension.md`](docs/v2_extension.md) for definitions, estimates,
-and limitations. The exact pre-extension version referenced in fellowship
-materials remains available at
-[`fellowship-submission-v1`](https://github.com/raamnandhakumar-eng/polecoai/tree/fellowship-submission-v1).
+and limitations.
 
 ## Repository structure
 
@@ -125,7 +161,7 @@ See [`docs/methodology.md`](docs/methodology.md) and [`docs/checks.md`](docs/che
 - The v2 access gap compares measures built with different task universes and
   should be read as a benchmark, not a literal measure of denied tool access.
 
-## Citation
+## Citation for Version 1
 
 ```bibtex
 @techreport{nandhakumar2026frontline,
