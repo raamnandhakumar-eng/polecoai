@@ -4,14 +4,14 @@ Task-level evidence on observed AI use across U.S. occupations, using the Anthro
 
 **Headline finding:** Frontline occupations account for **31.7% of U.S. employment but only 11.1% of observed task-matched AI usage.** Excluding technical occupations classified under clerical codes reduces the administrative-support representation index from **0.645 to 0.338**. The estimated wage elasticity of usage is **0.38** with an HC1 standard error of **0.19**.
 
-## Volume 1 paper
+## Version 1 paper
 
-- **Volume 1 preprint (DOI):** https://doi.org/10.5281/zenodo.21522366
-- **Read Volume 1 online:** https://raamnandhakumar-eng.github.io/polecoai/
-- **Volume 1 PDF:** [`paper/paper.pdf`](paper/paper.pdf)
+- **Version 1 preprint (DOI):** https://doi.org/10.5281/zenodo.21522366
+- **Read Version 1 online:** https://raamnandhakumar-eng.github.io/polecoai/
+- **Version 1 PDF:** [`paper/paper.pdf`](paper/paper.pdf)
 
-The manuscript linked above is **Volume 1** of the PolecoAI research series.
-Volume 1 is a sole-authored working paper. JEL: J23, J24, O33.
+The manuscript linked above is **Version 1** of this paper.
+Version 1 is a sole-authored working paper. JEL: J23, J24, O33.
 
 ## v2 research extension
 
