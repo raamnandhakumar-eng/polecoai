@@ -27,8 +27,8 @@ employment, wages, productivity, or access.
 - **Status:** Sole-authored working paper
 - **JEL codes:** J23, J24, O33
 
-The exact repository snapshot referenced in fellowship materials is preserved
-at [`fellowship-submission-v1`](https://github.com/raamnandhakumar-eng/polecoai/tree/fellowship-submission-v1).
+The original Version 1 repository snapshot is preserved at
+[`version-1-snapshot`](https://github.com/raamnandhakumar-eng/polecoai/tree/version-1-snapshot).
 
 ## Research question
 
