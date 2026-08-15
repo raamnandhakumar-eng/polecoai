@@ -1,4 +1,4 @@
-.PHONY: install data analysis extensions robustness exposure verify paper reproduce smoke
+.PHONY: install data analysis extensions robustness exposure v2 verify paper reproduce smoke
 
 install:
 	python -m pip install -e ".[dev]"
@@ -18,6 +18,9 @@ robustness:
 exposure:
 	python scripts/run_latest_exposure.py
 
+v2:
+	python scripts/run_v2.py
+
 verify:
 	python tests/test_reported_results.py
 
@@ -27,4 +30,4 @@ paper:
 smoke:
 	python tests/test_smoke.py
 
-reproduce: data analysis extensions robustness exposure verify paper
+reproduce: data analysis extensions robustness exposure v2 verify paper

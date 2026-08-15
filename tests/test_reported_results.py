@@ -108,6 +108,40 @@ def verify_official_v3() -> None:
     print(f"PASS official V3 SHA-256: {digest}")
 
 
+def verify_v2() -> None:
+    two_part = pd.read_csv(TABLES_DIR / "v2_two_part_models.csv")
+    marginal = two_part[
+        two_part["estimate_type"] == "average_marginal_effect"
+    ].set_index("term")
+    close(float(marginal.loc["computer_use_score", "estimate"]), 0.167071, 1e-6)
+    close(
+        float(marginal.loc["physical_presence_index", "estimate"]),
+        -0.103582,
+        1e-6,
+    )
+    if int(marginal.loc["computer_use_score", "n"]) != 732:
+        raise AssertionError("v2 two-part model: expected n=732")
+
+    definitions = pd.read_csv(
+        TABLES_DIR / "v2_frontline_definitions.csv"
+    ).set_index("definition")
+    baseline = definitions.loc["A_current_soc_groups"]
+    close(float(baseline["usage_share_pct"]), 11.1296729308, 1e-8)
+    close(float(baseline["employment_share_pct"]), 31.7427603261, 1e-8)
+    if not (definitions["representation_index"] < 1).all():
+        raise AssertionError("v2: one frontline definition is not underrepresented")
+
+    access_gap = pd.read_csv(
+        TABLES_DIR / "v2_access_gap_regression.csv"
+    ).set_index("term")
+    close(
+        float(access_gap.loc["computer_use_score", "coefficient"]),
+        0.135497,
+        1e-6,
+    )
+    print("PASS v2: two-part model, three definitions, and access-gap model")
+
+
 def test_reported_results() -> None:
     verify_representation()
     verify_extensions()
@@ -115,6 +149,7 @@ def test_reported_results() -> None:
     verify_task_split()
     verify_latest_exposure()
     verify_official_v3()
+    verify_v2()
     print("\nALL REQUESTED NUMERIC CHECKS PASSED")
 
 

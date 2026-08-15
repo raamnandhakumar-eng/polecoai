@@ -4,13 +4,58 @@ Task-level evidence on observed AI use across U.S. occupations, using the Anthro
 
 **Headline finding:** Frontline occupations account for **31.7% of U.S. employment but only 11.1% of observed task-matched AI usage.** Excluding technical occupations classified under clerical codes reduces the administrative-support representation index from **0.645 to 0.338**. The estimated wage elasticity of usage is **0.38** with an HC1 standard error of **0.19**.
 
-## Paper
+## Volume 1 paper
 
-- **Preprint (DOI):** https://doi.org/10.5281/zenodo.21522366
-- **Read online:** https://raamnandhakumar-eng.github.io/polecoai/
-- **PDF:** [`paper/paper.pdf`](paper/paper.pdf)
+- **Volume 1 preprint (DOI):** https://doi.org/10.5281/zenodo.21522366
+- **Read Volume 1 online:** https://raamnandhakumar-eng.github.io/polecoai/
+- **Volume 1 PDF:** [`paper/paper.pdf`](paper/paper.pdf)
 
-Sole-authored working paper. JEL: J23, J24, O33.
+The manuscript linked above is **Volume 1** of the PolecoAI research series.
+Volume 1 is a sole-authored working paper. JEL: J23, J24, O33.
+
+## v2 research extension
+
+**Question:** Who has the potential to benefit from AI, who actually uses it,
+and what explains the gap?
+
+The v2 extension keeps the paper and its **31.7% vs 11.1%** headline intact.
+It adds a two-part adoption model, two O*NET-based frontline definitions, and
+a theoretical-minus-observed **AI access gap**.
+
+- In the extensive-margin logit, a one-standard-deviation increase in computer
+  use is associated with a **16.7 percentage-point** increase in the probability
+  of any observed AI use. A one-standard-deviation increase in physical presence
+  is associated with a **10.4 percentage-point decrease**. The model uses 732
+  occupations and HC1 standard errors.
+- The representation index remains below one under the current SOC definition
+  (**0.351**), a high-physical-presence definition (**0.104**), and a
+  high-customer-facing definition (**0.348**).
+- The access-gap regression finds larger potential-minus-observed gaps in
+  computer-intensive and customer-facing occupations. This is descriptive and
+  does not identify a causal access barrier.
+
+### v2 figures
+
+#### Potential versus observed AI use
+
+![Potential versus observed AI use by occupation](figures/fig7_potential_observed_gap.png)
+
+*The access gap is the difference between theoretical task exposure and
+observed AI use. Points above the diagonal have more observed use than the
+theoretical benchmark; points below it have less.*
+
+#### Exposure gap under three frontline definitions
+
+![Employment and task-usage shares under three frontline definitions](figures/fig8_frontline_definitions.png)
+
+*Frontline occupations remain underrepresented in observed AI use under the
+current SOC definition and the physical-presence and customer-facing robustness
+definitions.*
+
+See [`docs/v2_extension.md`](docs/v2_extension.md) for definitions, estimates,
+and limitations. The exact pre-extension version referenced in fellowship
+materials remains available at
+[`fellowship-submission-v1`](https://github.com/raamnandhakumar-eng/polecoai/tree/fellowship-submission-v1).
 
 ## Repository structure
 
@@ -49,13 +94,23 @@ python tests/test_reported_results.py
 
 - **Anthropic Economic Index, `release_2025_02_10`** — task mappings, O*NET task statements, SOC structure, May 2023 BLS employment data, and wage data.
 - **Anthropic Economic Index, `release_2025_09_15`** — the global task-level slice from the August 4–11, 2025 V3 usage file.
-- **Anthropic AI Exposure Index, March 2026 release** — the committed frontline and computer/mathematical subset from `labor_market_impacts/job_exposure.csv`, stored in `data/reference/`.
+- **Anthropic AI Exposure Index, March 2026 release** — the committed five-group subset and the pinned full occupation file used by v2.
+- **O*NET 30.2** — education, computer-use, physical-presence, and customer-facing measures.
+- **May 2023 OEWS** — detailed occupation employment and wage controls.
+- **GPTs-are-GPTs** — theoretical task exposure used for the v2 potential benchmark.
 
-The download script fetches the 2025 AEI files from `Anthropic/EconomicIndex` on Hugging Face. Files under `data/raw/` and `data/processed/` are not committed. Anthropic Economic Index data are distributed under CC BY 4.0. O*NET, BLS, and other third-party files retain their original terms.
+The download script fetches the 2025 AEI files and verifies the pinned v2 inputs
+with SHA-256 hashes. Files under `data/raw/` and `data/processed/` are not
+committed. Anthropic Economic Index data are distributed under CC BY 4.0.
+O*NET, BLS, OpenAI, and other third-party files retain their original terms.
 
 ## Robustness
 
-The checks cover the SOC 43 taxonomy audit, shared-task splitting, February-to-August 2025 comparisons, occupation-level wage regressions, and direct assertions for the values reported in the paper. The four frontline representation indices are unchanged to three decimals under task splitting.
+The checks cover the SOC 43 taxonomy audit, shared-task splitting,
+February-to-August 2025 comparisons, occupation-level wage regressions, the v2
+two-part model, all three frontline definitions, and the access-gap regression.
+The four original frontline representation indices are unchanged to three
+decimals under task splitting.
 
 See [`docs/methodology.md`](docs/methodology.md) and [`docs/checks.md`](docs/checks.md).
 
@@ -67,6 +122,8 @@ See [`docs/methodology.md`](docs/methodology.md) and [`docs/checks.md`](docs/che
 - The February and August 2025 releases do not form a methodologically consistent panel.
 - Employer-deployed AI may be underrepresented in consumer conversation data.
 - The analysis is descriptive and does not identify causal effects on employment, wages, skills, or productivity.
+- The v2 access gap compares measures built with different task universes and
+  should be read as a benchmark, not a literal measure of denied tool access.
 
 ## Citation
 

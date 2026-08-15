@@ -1,8 +1,9 @@
 # Result checks
 
-The final local run used Python 3.12. Generated tables and figures were rebuilt
-after the repository reorganization and compared with the pre-refactor files.
-All eight CSV tables and all six PNG figures have identical SHA-256 hashes.
+The final local run used Python 3.12. The eight v1 CSV tables and six v1 PNG
+figures were rebuilt after the repository reorganization and compared with the
+pre-refactor files. Their SHA-256 hashes are unchanged. V2 adds four tables and
+two figures.
 
 ## Reported-result checks
 
@@ -20,6 +21,20 @@ All eight CSV tables and all six PNG figures have identical SHA-256 hashes.
 The four frontline indices are unchanged to three decimals under task
 splitting. The computer/mathematical index changes from 10.944 to 10.918, as
 stated in the paper.
+
+## V2 checks
+
+| Quantity | Reproduced value |
+|---|---:|
+| Two-part complete sample | 732 occupations |
+| Any-use AME, computer use | +0.1671 |
+| Any-use AME, physical presence | -0.1036 |
+| Current-definition representation | 0.3506 |
+| High-physical representation | 0.1043 |
+| High-customer representation | 0.3483 |
+| Access-gap coefficient, computer use | +0.1355 |
+
+The v2 assertions confirm that all three representation indices are below one.
 
 Run the assertions with:
 
