@@ -12,6 +12,32 @@ Task-level evidence on observed AI use across U.S. occupations, using the Anthro
 
 Sole-authored working paper. JEL: J23, J24, O33.
 
+## v2 research extension
+
+**Question:** Who has the potential to benefit from AI, who actually uses it,
+and what explains the gap?
+
+The v2 extension keeps the paper and its **31.7% vs 11.1%** headline intact.
+It adds a two-part adoption model, two O*NET-based frontline definitions, and
+a theoretical-minus-observed **AI access gap**.
+
+- In the extensive-margin logit, a one-standard-deviation increase in computer
+  use is associated with a **16.7 percentage-point** increase in the probability
+  of any observed AI use. A one-standard-deviation increase in physical presence
+  is associated with a **10.4 percentage-point decrease**. The model uses 732
+  occupations and HC1 standard errors.
+- The representation index remains below one under the current SOC definition
+  (**0.351**), a high-physical-presence definition (**0.104**), and a
+  high-customer-facing definition (**0.348**).
+- The access-gap regression finds larger potential-minus-observed gaps in
+  computer-intensive and customer-facing occupations. This is descriptive and
+  does not identify a causal access barrier.
+
+See [`docs/v2_extension.md`](docs/v2_extension.md) for definitions, estimates,
+and limitations. The exact pre-extension version referenced in fellowship
+materials remains available at
+[`fellowship-submission-v1`](https://github.com/raamnandhakumar-eng/polecoai/tree/fellowship-submission-v1).
+
 ## Repository structure
 
 ```text
@@ -49,13 +75,23 @@ python tests/test_reported_results.py
 
 - **Anthropic Economic Index, `release_2025_02_10`** — task mappings, O*NET task statements, SOC structure, May 2023 BLS employment data, and wage data.
 - **Anthropic Economic Index, `release_2025_09_15`** — the global task-level slice from the August 4–11, 2025 V3 usage file.
-- **Anthropic AI Exposure Index, March 2026 release** — the committed frontline and computer/mathematical subset from `labor_market_impacts/job_exposure.csv`, stored in `data/reference/`.
+- **Anthropic AI Exposure Index, March 2026 release** — the committed five-group subset and the pinned full occupation file used by v2.
+- **O*NET 30.2** — education, computer-use, physical-presence, and customer-facing measures.
+- **May 2023 OEWS** — detailed occupation employment and wage controls.
+- **GPTs-are-GPTs** — theoretical task exposure used for the v2 potential benchmark.
 
-The download script fetches the 2025 AEI files from `Anthropic/EconomicIndex` on Hugging Face. Files under `data/raw/` and `data/processed/` are not committed. Anthropic Economic Index data are distributed under CC BY 4.0. O*NET, BLS, and other third-party files retain their original terms.
+The download script fetches the 2025 AEI files and verifies the pinned v2 inputs
+with SHA-256 hashes. Files under `data/raw/` and `data/processed/` are not
+committed. Anthropic Economic Index data are distributed under CC BY 4.0.
+O*NET, BLS, OpenAI, and other third-party files retain their original terms.
 
 ## Robustness
 
-The checks cover the SOC 43 taxonomy audit, shared-task splitting, February-to-August 2025 comparisons, occupation-level wage regressions, and direct assertions for the values reported in the paper. The four frontline representation indices are unchanged to three decimals under task splitting.
+The checks cover the SOC 43 taxonomy audit, shared-task splitting,
+February-to-August 2025 comparisons, occupation-level wage regressions, the v2
+two-part model, all three frontline definitions, and the access-gap regression.
+The four original frontline representation indices are unchanged to three
+decimals under task splitting.
 
 See [`docs/methodology.md`](docs/methodology.md) and [`docs/checks.md`](docs/checks.md).
 
@@ -67,6 +103,8 @@ See [`docs/methodology.md`](docs/methodology.md) and [`docs/checks.md`](docs/che
 - The February and August 2025 releases do not form a methodologically consistent panel.
 - Employer-deployed AI may be underrepresented in consumer conversation data.
 - The analysis is descriptive and does not identify causal effects on employment, wages, skills, or productivity.
+- The v2 access gap compares measures built with different task universes and
+  should be read as a benchmark, not a literal measure of denied tool access.
 
 ## Citation
 
