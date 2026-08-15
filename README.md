@@ -4,13 +4,14 @@ Task-level evidence on observed AI use across U.S. occupations, using the Anthro
 
 **Headline finding:** Frontline occupations account for **31.7% of U.S. employment but only 11.1% of observed task-matched AI usage.** Excluding technical occupations classified under clerical codes reduces the administrative-support representation index from **0.645 to 0.338**. The estimated wage elasticity of usage is **0.38** with an HC1 standard error of **0.19**.
 
-## Paper
+## Volume 1 paper
 
-- **Preprint (DOI):** https://doi.org/10.5281/zenodo.21522366
-- **Read online:** https://raamnandhakumar-eng.github.io/polecoai/
-- **PDF:** [`paper/paper.pdf`](paper/paper.pdf)
+- **Volume 1 preprint (DOI):** https://doi.org/10.5281/zenodo.21522366
+- **Read Volume 1 online:** https://raamnandhakumar-eng.github.io/polecoai/
+- **Volume 1 PDF:** [`paper/paper.pdf`](paper/paper.pdf)
 
-Sole-authored working paper. JEL: J23, J24, O33.
+The manuscript linked above is **Volume 1** of the PolecoAI research series.
+Volume 1 is a sole-authored working paper. JEL: J23, J24, O33.
 
 ## v2 research extension
 
@@ -32,6 +33,24 @@ a theoretical-minus-observed **AI access gap**.
 - The access-gap regression finds larger potential-minus-observed gaps in
   computer-intensive and customer-facing occupations. This is descriptive and
   does not identify a causal access barrier.
+
+### v2 figures
+
+#### Potential versus observed AI use
+
+![Potential versus observed AI use by occupation](figures/fig7_potential_observed_gap.png)
+
+*The access gap is the difference between theoretical task exposure and
+observed AI use. Points above the diagonal have more observed use than the
+theoretical benchmark; points below it have less.*
+
+#### Exposure gap under three frontline definitions
+
+![Employment and task-usage shares under three frontline definitions](figures/fig8_frontline_definitions.png)
+
+*Frontline occupations remain underrepresented in observed AI use under the
+current SOC definition and the physical-presence and customer-facing robustness
+definitions.*
 
 See [`docs/v2_extension.md`](docs/v2_extension.md) for definitions, estimates,
 and limitations. The exact pre-extension version referenced in fellowship
